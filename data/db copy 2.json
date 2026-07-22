@@ -1,0 +1,169 @@
+{
+  "personalinformation": {
+    "name": "Zeeshan Haider",
+    "contact": "+92 303 8317572",
+    "email": "Shani721287@gmail.com",
+    "address": "Sargodha, Pakistan"
+  },
+  "workexperience": [
+    {
+      "company": "UniLife",
+      "role": "Frontend Developer and UI/UX Designer",
+      "duration": "01/10/2024 - Current",
+      "location": "Sargodha, Pakistan",
+      "responsibilities": [
+        "Developed responsive web applications using React.js and Next.js, improving performance and user experience.",
+        "Designed and implemented modern UI components aligned with UX best practices.",
+        "Collaborated with marketing teams to create UX-driven campaigns that increased engagement.",
+        "Debugged and optimized frontend code to improve application stability and load times."
+      ]
+    },
+    {
+      "company": "DrBeen Corp",
+      "role": "UI/UX Designer (Remote Job) ",
+      "duration": "19/02/2024 - 30/09/2024 ",
+      "location": "California, United States",
+      "responsibilities": [
+        "Designed UI/UX solutions for web and mobile platforms , improving usability and user satisfaction.",
+        "Conducted usability testing and implemented feedback-driven design improvements.",
+        "Collaborated with stakeholders and clients to align design goals with business objectives."
+      ]
+    },
+    {
+      "company": "CHI Technologies, NUST University, NSTP",
+      "role": "Full Stack Developer (intern)",
+      "duration": " 12/11/2023 - 30/06/2024",
+      "location": "Islamabad, Pakistan",
+      "responsibilities": [
+        "Built and maintained web applications using NestJS, Flutter, JavaScript, and Angular.",
+        "Designed intuitive UI interfaces and improved overall product usability.",
+        "Assisted in usability testing strategies to enhance workflow efficiency."
+      ]
+    },
+    {
+      "company": "Maybank",
+      "role": "UI/UX Designer (intern)",
+      "duration": "30/01/2023 - 31/05/2023",
+      "location": "Kuala Lumpur, Malaysia",
+      "responsibilities": [
+        "Contributed to UI/UX improvements for banking web and mobile products.",
+        "Worked on Design Language Systems (DLS), wireframes, user flows, and prototypes.",
+        "Conducted interviews and usability analysis to improve user experience."
+      ]
+    },
+    {
+      "company": "Datum ClearMind Sdn Bhd",
+      "role": "Web Developer and Social Media Manager (intern)",
+      "duration": "01/09/2020 - 30/11/2020",
+      "location": "Kuala Lumpur, Malaysia",
+      "responsibilities": [
+        "Designed marketing visuals and UI assets for web and social media platforms.",
+        "Developed and optimized WordPress websites for SEO and performance.",
+        "Created promotional videos and digital media content."
+      ]
+    }
+  ],
+  "aboutmyself": {
+    "summary": "UI/UX Designer and Frontend Developer with almost 4 years of experience in designing and developing user-centered web and mobile applications. Strong background in React.js, Next.js, Flutter, UI/UX research, usability testing, and design systems. Proven ability to collaborate with cross-functional teams and deliver high-quality, scalable digital products. Seeking opportunities to contribute to innovative and user-focused organizations."
+  },
+  "educationhistory": [
+    {
+      "name": "UCSI University Malaysia",
+      "location": "Kuala Lumpur, Malaysia",
+      "degree": "Bachelor of Science (Hons) in Computing",
+      "cgpa": "3.64"
+    },
+    {
+      "name": "Punjab College of Information Tech Sargodha",
+      "location": "Sargodha, Pakistan",
+      "degree": "Higher Secondary School Certificate in Information and Computer Science",
+      "cgpa": ""
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "level": "Advanced"
+    },
+    {
+      "name": "Urdu",
+      "level": "Native"
+    }
+  ],
+  "skillCategories": [
+    {
+      "category": "Frontend & Programming Languages",
+      "skills": [
+        "NextJS",
+        "Flutter",
+        "ReactJS",
+        "Javascript",
+        "HTML5",
+        "CSS3",
+        "Typescript",
+        "Angular",
+        "C#",
+        "Java",
+        "C++",
+        "Python",
+        "Wordpress",
+        "Linux"
+      ]
+    },
+    {
+      "category": "UI/UX & Design",
+      "skills": [
+        "Figma",
+        "Adobe XD",
+        "Wireframing",
+        "User Research",
+        "Prototyping",
+        "Design Systems",
+        "Usability Testing",
+        "Interaction Design"
+      ]
+    },
+    {
+      "category": "Backend & Tools",
+      "skills": [
+        "NestJS",
+        "PHP Laravel",
+        "MongoDB",
+        "SQL",
+        "Prisma",
+        "NodeJS",
+        "Git",
+        "Docker",
+        "Firebase"
+      ]
+    },
+    {
+      "category": "Creative Tools",
+      "skills": [
+        "Adobe Photoshop",
+        "Adobe AfterEffects",
+        "Canvas",
+        "Adobe Illustrator",
+        "Adobe Premiere Pro",
+        "DaVinci",
+        "Microsoft Office"
+      ]
+    }
+  ],
+  "strengths": [
+    {
+      "category": "Interpersonal Skills",
+      "skills": [
+        "Problem Solving",
+        "Leadership",
+        "Critical Thinking",
+        "Team Management",
+        "Teamwork",
+        "Communication",
+        "Adaptability",
+        "Time Management"
+      ]
+    }
+  ],
+  "portfoliolink": "https://portfolio-chi-ten-99843whpll.vercel.app/"
+}

@@ -5,6 +5,19 @@
   --foreground: #171717;
 }
 
+@layer components {
+  .glass-input {
+    @apply bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 outline-none transition-all;
+  }
+  .glass-input:focus {
+    @apply border-cyan-400/50 bg-white/10 ring-2 ring-cyan-500/20;
+  }
+
+  .glass-select {
+    @apply bg-white/5 border border-white/10 text-white backdrop-blur-md;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,10 +25,16 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  }
+} */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
 

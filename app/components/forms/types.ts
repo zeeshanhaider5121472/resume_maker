@@ -33,6 +33,7 @@ export interface Strengths {
 
 export interface User {
   id: string;
+  filename: string;
   personalinformation: PersonalInfo;
   aboutmyself: { summary: string };
   workexperience: WorkExp[];

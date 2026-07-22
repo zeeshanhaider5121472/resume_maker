@@ -34,7 +34,19 @@ export default function ResumePage({ userData }: { userData?: any }) {
   }, []);
 
   const handlePrint = () => {
+    // TRICK: Temporarily change the document title to the custom filename
+    // The browser uses the title as the default PDF filename.
+    const originalTitle = document.title;
+    if (userData?.filename) {
+      document.title = userData.filename;
+    }
+
     window.print();
+
+    // Restore the original title shortly after print dialog opens
+    setTimeout(() => {
+      document.title = originalTitle;
+    }, 500);
   };
 
   // Safety check: if userData doesn't exist yet, don't render the template

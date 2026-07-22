@@ -8,6 +8,22 @@ export default function PersonalInfoForm({
 }: { user: User } & { updateField: (path: string, value: any) => void }) {
   return (
     <>
+      {/* PROFILE SETTINGS CARD */}
+      <GlassCard title="Profile Settings">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <FormInput
+            label="User ID"
+            value={user.id}
+            onChange={(v) => updateField("id", v)}
+          />
+          <FormInput
+            label="Print File Name (PDF)"
+            value={user.filename || ""}
+            onChange={(v) => updateField("filename", v)}
+          />
+        </div>
+      </GlassCard>
+
       <GlassCard title="Personal Information">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormInput

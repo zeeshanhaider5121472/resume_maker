@@ -2,6 +2,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import AIInputScreen from "./forms/AIInputScreen";
+import AIProcessingScreen from "./forms/AIProcessingScreen";
 import CategoryForm from "./forms/CategoryForm";
 import EducationForm from "./forms/EducationForm";
 import ExperienceForm from "./forms/ExperienceForm";
@@ -12,6 +14,7 @@ import ResumePage from "./resumetemplate1/resume_template1";
 
 const createEmptyUser = (): User => ({
   id: `user_${Date.now()}`,
+  filename: "",
   personalinformation: { name: "", contact: "", email: "", address: "" },
   aboutmyself: { summary: "" },
   workexperience: [],
@@ -25,8 +28,19 @@ const createEmptyUser = (): User => ({
 export default function Dashboard() {
   const [dbUsers, setDbUsers] = useState<User[]>([]);
   const [activeUser, setActiveUser] = useState<User | null>(null);
-  const [viewMode, setViewMode] = useState<"edit" | "preview">("edit");
+  const [originalId, setOriginalId] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<
+    "edit" | "preview" | "ai_input" | "ai_processing"
+  >("edit");
   const [isSaving, setIsSaving] = useState(false);
+
+  const [aiConfig, setAiConfig] = useState<{
+    jobDesc: string;
+    prompt: string;
+    provider: string;
+    model: string;
+    apiKey?: string;
+  } | null>(null);
 
   useEffect(() => {
     fetch("/api/db")
@@ -34,8 +48,11 @@ export default function Dashboard() {
       .then((data) => {
         if (data && Array.isArray(data.resumeusers)) {
           setDbUsers(data.resumeusers);
-          if (data.resumeusers.length > 0)
-            setActiveUser(JSON.parse(JSON.stringify(data.resumeusers[0])));
+          if (data.resumeusers.length > 0) {
+            const firstUser = data.resumeusers[0];
+            setActiveUser(JSON.parse(JSON.stringify(firstUser)));
+            setOriginalId(firstUser.id); // <-- Set original ID
+          }
         }
       })
       .catch(() => setDbUsers([]));
@@ -45,43 +62,15 @@ export default function Dashboard() {
     const user = dbUsers.find((u) => u.id === id);
     if (user) {
       setActiveUser(JSON.parse(JSON.stringify(user)));
+      setOriginalId(user.id); // <-- Set original ID
       setViewMode("edit");
     }
   };
 
   const handleAddUser = () => {
-    setActiveUser(createEmptyUser());
-    setViewMode("edit");
-  };
-
-  const handleDeleteUser = async () => {
-    if (!activeUser) return;
-
-    // Confirmation prompt to prevent accidental deletes
-    const confirmDelete = window.confirm(
-      `Are you sure you want to delete ${activeUser.personalinformation.name || "this user"}? This cannot be undone.`,
-    );
-    if (!confirmDelete) return;
-
-    const updatedDbUsers = dbUsers.filter((u) => u.id !== activeUser.id);
-    setDbUsers(updatedDbUsers);
-    setIsSaving(true);
-
-    // Save updated list to db.json
-    await fetch("/api/db", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ resumeusers: updatedDbUsers }),
-    });
-
-    setIsSaving(false);
-
-    // Load the next available user, or set to null if empty
-    if (updatedDbUsers.length > 0) {
-      setActiveUser(JSON.parse(JSON.stringify(updatedDbUsers[0])));
-    } else {
-      setActiveUser(null);
-    }
+    const newUser = createEmptyUser();
+    setActiveUser(newUser);
+    setOriginalId(null); // <-- New user has no original ID
     setViewMode("edit");
   };
 
@@ -121,27 +110,125 @@ export default function Dashboard() {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleDeleteUser = async () => {
     if (!activeUser) return;
-    const exists = dbUsers.some((u) => u.id === activeUser.id);
-    const updatedDbUsers = exists
-      ? dbUsers.map((u) => (u.id === activeUser.id ? activeUser : u))
-      : [...dbUsers, activeUser];
+    const confirmDelete = window.confirm(`Delete user ID: ${activeUser.id}?`);
+    if (!confirmDelete) return;
 
+    // Use originalId to ensure we delete the right user even if ID field was changed
+    const updatedDbUsers = dbUsers.filter(
+      (u) => u.id !== (originalId || activeUser.id),
+    );
     setDbUsers(updatedDbUsers);
     setIsSaving(true);
-
     await fetch("/api/db", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ resumeusers: updatedDbUsers }),
     });
+    setIsSaving(false);
 
+    if (updatedDbUsers.length > 0) {
+      setActiveUser(JSON.parse(JSON.stringify(updatedDbUsers[0])));
+      setOriginalId(updatedDbUsers[0].id);
+    } else {
+      setActiveUser(null);
+      setOriginalId(null);
+    }
+    setViewMode("edit");
+  };
+
+  const handleSubmit = async () => {
+    if (!activeUser) return;
+
+    // Map through users. If the original ID matches, replace it with the new activeUser data.
+    // If it doesn't match any original ID, it's a new user, so add it to the end.
+    let updatedDbUsers;
+    const exists = dbUsers.some((u) => u.id === originalId);
+
+    if (exists) {
+      updatedDbUsers = dbUsers.map((u) =>
+        u.id === originalId ? activeUser : u,
+      );
+    } else {
+      updatedDbUsers = [...dbUsers, activeUser];
+    }
+
+    setDbUsers(updatedDbUsers);
+    setOriginalId(activeUser.id); // Update originalId to the new ID
+    setIsSaving(true);
+    await fetch("/api/db", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ resumeusers: updatedDbUsers }),
+    });
     setIsSaving(false);
     setViewMode("preview");
   };
 
-  // PREVIEW MODE
+  const handleAIGenerate = (
+    jobDesc: string,
+    prompt: string,
+    provider: string,
+    model: string,
+    apiKey?: string,
+  ) => {
+    setAiConfig({ jobDesc, prompt, provider, model, apiKey });
+    setViewMode("ai_processing");
+  };
+
+  const handleAcceptAI = async (newUser: User) => {
+    setActiveUser(newUser);
+    setViewMode("edit");
+    setIsSaving(true);
+
+    let updatedDbUsers;
+    if (dbUsers.some((u) => u.id === originalId)) {
+      updatedDbUsers = dbUsers.map((u) => (u.id === originalId ? newUser : u));
+    } else {
+      updatedDbUsers = [...dbUsers, newUser];
+    }
+    await fetch("/api/db", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ resumeusers: updatedDbUsers }),
+    });
+    setIsSaving(false);
+    setDbUsers(updatedDbUsers);
+    alert("AI Resume Accepted & Saved!");
+  };
+
+  const handleEditAI = (newUser: User) => {
+    setActiveUser(newUser);
+    setViewMode("edit");
+  };
+
+  if (viewMode === "ai_processing" && activeUser && aiConfig) {
+    return (
+      <AIProcessingScreen
+        activeUser={activeUser}
+        jobDesc={aiConfig.jobDesc}
+        prompt={aiConfig.prompt}
+        provider={aiConfig.provider}
+        model={aiConfig.model}
+        apiKey={aiConfig.apiKey}
+        onBack={() => setViewMode("ai_input")}
+        onAccept={handleAcceptAI}
+        onEdit={handleEditAI}
+      />
+    );
+  }
+
+  if (viewMode === "ai_input" && activeUser) {
+    return (
+      <AIInputScreen
+        activeUser={activeUser}
+        onBack={() => setViewMode("edit")}
+        onGenerate={handleAIGenerate}
+      />
+    );
+  }
+
   if (viewMode === "preview" && activeUser) {
     return (
       <div className="min-h-screen bg-gray-200 flex flex-col items-center py-10 print:py-0 print:bg-white">
@@ -160,24 +247,23 @@ export default function Dashboard() {
     );
   }
 
-  // EDIT MODE
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-purple-950 text-white p-4 md:p-10">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950 text-white p-4 md:p-10">
       <div className="max-w-3xl mx-auto">
         <header className="mb-10 flex flex-wrap justify-between items-center gap-4">
-          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-linear-to-r from-cyan-400 to-purple-500">
+          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
             Resume Manager
           </h1>
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-3 items-center flex-wrap">
             <select
               className="bg-white/5 border border-white/10 backdrop-blur-md text-white px-4 py-2 rounded-lg outline-none focus:border-cyan-400/50"
-              value={activeUser?.id || ""}
+              value={originalId || ""}
               onChange={(e) => handleSelectUser(e.target.value)}
             >
               {dbUsers.length === 0 && <option value="">No users yet</option>}
               {dbUsers.map((u) => (
                 <option key={u.id} value={u.id} className="bg-slate-800">
-                  {u.personalinformation.name || "Unnamed User"}
+                  {u.id} {/* <-- Changed to show ID instead of Name */}
                 </option>
               ))}
             </select>
@@ -185,9 +271,8 @@ export default function Dashboard() {
               onClick={handleAddUser}
               className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-sm font-medium"
             >
-              + New
+              + New User
             </button>
-
             {activeUser && (
               <button
                 onClick={handleDeleteUser}
@@ -206,7 +291,14 @@ export default function Dashboard() {
           </div>
         ) : (
           <div>
-            <div className="sticky top-4 z-10 flex justify-end mb-6">
+            <div className="sticky top-4 z-10 flex justify-end mb-6 gap-3">
+              <button
+                onClick={() => setViewMode("ai_input")}
+                className="px-6 py-3 rounded-xl bg-white/5 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-500/10 transition-all font-semibold backdrop-blur-md"
+              >
+                Upgrade with AI ✨
+              </button>
+
               <button
                 onClick={handleSubmit}
                 disabled={isSaving}
@@ -216,7 +308,6 @@ export default function Dashboard() {
               </button>
             </div>
 
-            {/* Render the broken-down components */}
             <PersonalInfoForm user={activeUser} updateField={updateField} />
             <ExperienceForm
               user={activeUser}

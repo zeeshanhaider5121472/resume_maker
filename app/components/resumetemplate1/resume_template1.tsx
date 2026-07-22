@@ -18,8 +18,8 @@ export default function ResumePage({ userData }: { userData?: any }) {
   if (!userData) return null;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50 print:bg-white print:p-0">
-      <div className="w-full max-w-4xl shadow-lg flex flex-col bg-white print:shadow-none">
+    <div className="min-h-screen flex flex-col items-center overflow-x-auto p-4 bg-gray-50 print:bg-white print:p-0">
+      <div className="w-200 shadow-lg flex flex-col bg-white print:shadow-none">
         {/* Pass userData down to your child components safely */}
         <HeaderTemp1 personalinformation={userData.personalinformation} />
         <SummaryTemp1 aboutmyself={userData.aboutmyself} />

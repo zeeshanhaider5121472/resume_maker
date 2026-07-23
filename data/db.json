@@ -1,135 +1,135 @@
 {
   "resumeusers": [
     {
-  "id": "Ali Abdullah Raza",
-  "filename": "",
-  "personalinformation": {
-    "name": "Ali Abdullah Raza",
-    "contact": "+92 300 0764149",
-    "email": "aliabdullah55514@gmail.com",
-    "address": "Islamabad, Pakistan"
-  },
-  "aboutmyself": {
-    "summary": "A results-driven ACCA Part-Qualified and  accounting graduate with a strong academic background in accounting, finance, and business management. Highly proficient in financial reporting, bookkeeping, taxation, and accounting software such as QuickBooks and Sage. Adept at problem-solving, financial analysis, and working in dynamic, fast-paced environments. Currently seeking an entry-level or trainee role in accounting or finance, audit or taxation to apply theoretical  knowledge to real-world business operations."
-  },
-  "workexperience": [
-    {
-      "company": "Siemens Energy UK",
-      "role": "Administrative Assistant",
-      "duration": "Dec 2023 - Present",
-      "location": "Norwich UK",
-      "responsibilities": [
-        "Managing daily administrative operations, including scheduling, document handling, and office coordination.  ",
-        "Preparing reports, maintaining filing systems, and supporting inter departmental communication.  ",
-        "Assisting with data entry, client correspondence, and general office support tasks ● Supported internal teams with logistical arrangements and ensured timely follow-up on tasks.  ",
-        "Attending the international clients and staff team. "
-      ]
+      "id": "Ali Abdullah Raza",
+      "filename": "",
+      "personalinformation": {
+        "name": "Ali Abdullah Raza",
+        "contact": "+92 300 0764149",
+        "email": "aliabdullah55514@gmail.com",
+        "address": "Islamabad, Pakistan"
+      },
+      "aboutmyself": {
+        "summary": "A results-driven ACCA Part-Qualified and  accounting graduate with a strong academic background in accounting, finance, and business management. Highly proficient in financial reporting, bookkeeping, taxation, and accounting software such as QuickBooks and Sage. Adept at problem-solving, financial analysis, and working in dynamic, fast-paced environments. Currently seeking an entry-level or trainee role in accounting or finance, audit or taxation to apply theoretical  knowledge to real-world business operations."
+      },
+      "workexperience": [
+        {
+          "company": "Siemens Energy UK",
+          "role": "Administrative Assistant",
+          "duration": "Dec 2023 - Present",
+          "location": "Norwich UK",
+          "responsibilities": [
+            "Managing daily administrative operations, including scheduling, document handling, and office coordination.  ",
+            "Preparing reports, maintaining filing systems, and supporting inter departmental communication.  ",
+            "Assisting with data entry, client correspondence, and general office support tasks ● Supported internal teams with logistical arrangements and ensured timely follow-up on tasks.  ",
+            "Attending the international clients and staff team. "
+          ]
+        },
+        {
+          "company": "Chicken Palace",
+          "role": "Cash Operator/ Till Operator",
+          "duration": "Apr 2023 - Aug 2023",
+          "location": "Peterborough UK",
+          "responsibilities": [
+            "Handled point-of-sale (POS) operations and managed customer transactions efficiently.",
+            "Maintained accurate cash handling and performed end-of-shift reconciliations.",
+            "Provided prompt and courteous customer service in a busy environment  "
+          ]
+        },
+        {
+          "company": "Triton Security",
+          "role": "Fire Warden & First Aid Support Staff",
+          "duration": "Sep 2023 - Nov 2023 ",
+          "location": "Ipswich UK",
+          "responsibilities": [
+            "Performed workplace safety responsibilities including monitoring emergency exits and assisting in evacuation drills. ",
+            "Supported compliance with internal health and safety protocols and participated in on-site safety briefings. ",
+            "Acted as a key point of contact during emergencies, ensuring calm communication and safe coordination among staff.   "
+          ]
+        }
+      ],
+      "educationhistory": [
+        {
+          "name": "Oxford Brookes University",
+          "location": "Oxford, UK",
+          "degree": "BSc (Hons) Applied Accounting",
+          "cgpa": ""
+        },
+        {
+          "name": "ACCA London",
+          "location": "London, UK",
+          "degree": "ACCA Finalist",
+          "cgpa": ""
+        },
+        {
+          "name": "PPA Business School, Paris",
+          "location": "Paris, France ",
+          "degree": "BBA in Accounting and Finance",
+          "cgpa": ""
+        },
+        {
+          "name": "ACCA London",
+          "location": "London, UK",
+          "degree": "ACCA Advanced Diploma in Accounting and Business",
+          "cgpa": ""
+        }
+      ],
+      "languages": [
+        {
+          "name": "Urdu",
+          "level": "Native"
+        },
+        {
+          "name": "English",
+          "level": "Advanced"
+        },
+        {
+          "name": "Punjabi",
+          "level": "Native"
+        }
+      ],
+      "skillCategories": [
+        {
+          "category": "Certifications",
+          "skills": [
+            "ACCA Ethics and Professional Skills Module",
+            "QuickBooks Online Certification",
+            "Sage Accounting Certification",
+            "Microsoft Excel Advanced Skills",
+            "Camping Leadership Programme"
+          ]
+        },
+        {
+          "category": "Core Competencies",
+          "skills": [
+            "Financial Accounting & Reporting",
+            "Bookkeeping & Account Reconciliation",
+            "Budgeting & Forecasting",
+            "Taxation & Compliance",
+            "Financial Data Analysis",
+            "Accounts Payable & Receivable",
+            "QuickBooks Proficiency",
+            "Sage Accounting Proficiency",
+            "Microsoft Excel Proficiency",
+            "Strong Analytical & Problem-Solving Skills",
+            "Team Collaboration & Leadership"
+          ]
+        }
+      ],
+      "strengths": [
+        {
+          "category": "Interpersonal Skills",
+          "skills": [
+            "Problem Solving",
+            "Communication",
+            "Team Collaboration",
+            "Leadership",
+            "Adaptability"
+          ]
+        }
+      ],
+      "portfoliolink": "https://www.linkedin.com/in/ali-abdullah-raza-46a753246"
     },
-    {
-      "company": "Chicken Palace",
-      "role": "Cash Operator/ Till Operator",
-      "duration": "Apr 2023 - Aug 2023",
-      "location": "Peterborough UK",
-      "responsibilities": [
-        "Handled point-of-sale (POS) operations and managed customer transactions efficiently.",
-        "Maintained accurate cash handling and performed end-of-shift reconciliations.",
-        "Provided prompt and courteous customer service in a busy environment  "
-      ]
-    },
-    {
-      "company": "Triton Security",
-      "role": "Fire Warden & First Aid Support Staff",
-      "duration": "Sep 2023 - Nov 2023 ",
-      "location": "Ipswich UK",
-      "responsibilities": [
-        "Performed workplace safety responsibilities including monitoring emergency exits and assisting in evacuation drills. ",
-        "Supported compliance with internal health and safety protocols and participated in on-site safety briefings. ",
-        "Acted as a key point of contact during emergencies, ensuring calm communication and safe coordination among staff.   "
-      ]
-    }
-  ],
-  "educationhistory": [
-    {
-      "name": "Oxford Brookes University",
-      "location": "Oxford, UK",
-      "degree": "BSc (Hons) Applied Accounting",
-      "cgpa": ""
-    },
-    {
-      "name": "ACCA London",
-      "location": "London, UK",
-      "degree": "ACCA Finalist",
-      "cgpa": ""
-    },
-    {
-      "name": "PPA Business School, Paris",
-      "location": "Paris, France ",
-      "degree": "BBA in Accounting and Finance",
-      "cgpa": ""
-    },
-    {
-      "name": "ACCA London",
-      "location": "London, UK",
-      "degree": "ACCA Advanced Diploma in Accounting and Business",
-      "cgpa": ""
-    }
-  ],
-  "languages": [
-    {
-      "name": "Urdu",
-      "level": "Native"
-    },
-    {
-      "name": "English",
-      "level": "Advanced"
-    },
-    {
-      "name": "Punjabi",
-      "level": "Native"
-    }
-  ],
-  "skillCategories": [
-    {
-      "category": "Certifications",
-      "skills": [
-        "ACCA Ethics and Professional Skills Module",
-        "QuickBooks Online Certification",
-        "Sage Accounting Certification",
-        "Microsoft Excel Advanced Skills",
-        "Camping Leadership Programme"
-      ]
-    },
-    {
-      "category": "Core Competencies",
-      "skills": [
-        "Financial Accounting & Reporting",
-        "Bookkeeping & Account Reconciliation",
-        "Budgeting & Forecasting",
-        "Taxation & Compliance",
-        "Financial Data Analysis",
-        "Accounts Payable & Receivable",
-        "QuickBooks Proficiency",
-        "Sage Accounting Proficiency",
-        "Microsoft Excel Proficiency",
-        "Strong Analytical & Problem-Solving Skills",
-        "Team Collaboration & Leadership"
-      ]
-    }
-  ],
-  "strengths": [
-    {
-      "category": "Interpersonal Skills",
-      "skills": [
-        "Problem Solving",
-        "Communication",
-        "Team Collaboration",
-        "Leadership",
-        "Adaptability"
-      ]
-    }
-  ],
-  "portfoliolink": "https://www.linkedin.com/in/ali-abdullah-raza-46a753246"
-},
     {
       "id": "Zeeshan Haider Test profile",
       "personalinformation": {

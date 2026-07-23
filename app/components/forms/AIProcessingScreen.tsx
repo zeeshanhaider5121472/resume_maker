@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import ResumePage from "../resumetemplate1/resume_template1";
 import { User } from "./types";
-// Add a window declaration for puter to satisfy TypeScript
+
 declare global {
   interface Window {
     puter?: any;
@@ -38,24 +38,22 @@ export default function AIProcessingScreen({
   );
   const [errorMsg, setErrorMsg] = useState("");
   const [aiUserData, setAiUserData] = useState<User | null>(null);
+  const [aiChangesSummary, setAiChangesSummary] = useState<string>("");
 
   useEffect(() => {
     const generate = async () => {
       try {
         // Construct the full prompt
-        const fullPrompt = `${prompt}\n\nJOB DESCRIPTION:\n${jobDesc}\n\nCURRENT RESUME JSON:\n${JSON.stringify(activeUser, null, 2)}\n\nReturn ONLY valid JSON in the exact same schema.`;
+        const fullPrompt = `${prompt}\n\nJOB DESCRIPTION:\n${jobDesc}\n\nCURRENT RESUME JSON:\n${JSON.stringify(activeUser, null, 2)}\n\nReturn ONLY valid JSON containing "updated_resume" and "changes_summary".`;
 
         let responseContent = "";
 
         if (provider === "puter") {
-          // Puter.js Client-Side Call
           if (!window.puter) throw new Error("Puter.js not loaded");
           const resp = await window.puter.ai.chat(fullPrompt, { model: model });
-          // Puter returns message content directly or in an object
           responseContent =
             typeof resp === "string" ? resp : resp.message.content;
         } else {
-          // Nvidia NIM API Call (to our backend route)
           const res = await fetch("/api/nvidia", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -75,8 +73,20 @@ export default function AIProcessingScreen({
         if (cleanJson.startsWith("```")) cleanJson = cleanJson.slice(3);
         if (cleanJson.endsWith("```")) cleanJson = cleanJson.slice(0, -3);
 
-        const parsed = JSON.parse(cleanJson.trim());
-        setAiUserData(parsed);
+        const parsedResponse = JSON.parse(cleanJson.trim());
+
+        // Extract data from the new wrapper format
+        if (parsedResponse.updated_resume) {
+          setAiUserData(parsedResponse.updated_resume);
+          setAiChangesSummary(
+            parsedResponse.changes_summary || "No summary provided by AI.",
+          );
+        } else {
+          // Fallback just in case the AI returned the raw resume without the wrapper
+          setAiUserData(parsedResponse);
+          setAiChangesSummary("AI returned raw resume data without a summary.");
+        }
+
         setStatus("preview");
       } catch (error: any) {
         console.error(error);
@@ -140,6 +150,18 @@ export default function AIProcessingScreen({
           Accept
         </button>
       </div>
+
+      {/* AI CHANGES SUMMARY CARD */}
+      {aiChangesSummary && (
+        <div className="w-full max-w-4xl mb-6 bg-white border-l-4 border-cyan-500 rounded-2xl shadow-lg p-6">
+          <h3 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+            ✨ What Changed & Why
+          </h3>
+          <p className="text-sm text-slate-600 whitespace-pre-wrap leading-relaxed">
+            {aiChangesSummary}
+          </p>
+        </div>
+      )}
 
       {aiUserData && (
         <div className="w-full max-w-4xl">

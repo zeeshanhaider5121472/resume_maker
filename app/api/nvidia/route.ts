@@ -19,6 +19,7 @@ export async function POST(req: Request) {
         headers: {
           Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({
           model: model,
@@ -30,11 +31,14 @@ export async function POST(req: Request) {
     );
 
     if (!response.ok) {
-      const errData = await response.json();
-      return NextResponse.json(
-        { error: errData.detail || "Nvidia API Error" },
-        { status: response.status },
-      );
+      const errData = await response.json().catch(() => ({}));
+      // Nvidia sometimes nests errors in 'detail' or 'message'
+      const errMsg =
+        errData.detail ||
+        errData.message ||
+        JSON.stringify(errData) ||
+        "Nvidia API Error";
+      return NextResponse.json({ error: errMsg }, { status: response.status });
     }
 
     const data = await response.json();

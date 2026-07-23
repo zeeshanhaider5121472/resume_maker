@@ -15,22 +15,43 @@ interface Props {
   ) => void;
 }
 
+// app/components/forms/AIInputScreen.tsx
+
 const DEFAULT_PROMPT = `
-I have uploaded my resume in JSON format and a job description. I need you to optimize my resume profile section to align with the job description and pass ATS (Applicant Tracking System) screening at the highest possible success rate.
 
-**Critical requirements:**
+"I've uploaded my resume in JSON format and a job description. I need you to optimize my entire resume to align with the job description and pass ATS (Applicant Tracking System) screening at the highest possible success rate.
 
-1. **Preserve the JSON schema exactly.** Return the response in the identical JSON structure I provided—do not alter, rename, or restructure any fields. Only modify the content within existing fields.
+Critical requirements:
 
-2. **Match the job description comprehensively.** Extract and incorporate every relevant keyword, required skill, competency, and qualification from the job description into my profile. Use the exact language and terminology the job posting uses for technical skills, industry standards, and role-specific competencies. Ensure critical keywords appear naturally throughout the profile text—this is essential for ATS parsing and keyword matching.
+Preserve the JSON schema exactly. Return the response in the identical JSON structure I provided—do not alter, rename, add, remove, or restructure any fields. Only modify the content within existing fields.
 
-3. **Optimize for ATS keyword recognition.** Use clear, direct language without special characters, symbols, or formatting that breaks ATS parsing. Include industry-standard terminology and acronyms exactly as they appear in the job description. Prioritize incorporating all hard-requirement keywords and skills that ATS systems scan for. The profile should read naturally while maximizing keyword density and relevance signals.
+Tailor every applicable section to the job description. Optimize not only the summary/profile section but also adapt and refine the following fields where relevant:
 
-4. **Humanize the language.** Write the profile in natural, conversational English that reads as genuinely written by a person—not as AI-generated text. Vary sentence structure, use active voice appropriately, and avoid robotic phrasing or obvious AI patterns. The writing should feel authentic and professional.
+Summary/Profile
+Skills (technical, soft, tools, methodologies, certifications)
+Strengths/Core Competencies
+Work Experience (rephrase bullet points using job description keywords and action verbs; emphasize responsibilities and achievements that mirror the role's requirements; quantify results where possible)
+Education (only if relevant coursework, projects, or specializations align with the job)
+Projects (highlight projects that demonstrate skills listed in the job description)
+Certifications/Training (prioritize and reword descriptions to match job requirements)
+Important: Do NOT fabricate skills, experiences, or achievements I do not have. Only reframe, reword, and emphasize what already exists in my resume using the language and terminology of the job description.
 
-5. **Maintain authenticity.** Do not fabricate experience, skills, or achievements. Reframe and reorganize my existing qualifications to highlight their relevance to this specific role, but keep all claims truthful.
+Extract and incorporate every relevant keyword, required skill, competency, qualification, and action verb from the job description throughout the entire resume. Use the exact language, terminology, and acronyms the job posting uses for technical skills, tools, industry standards, and role-specific competencies. Ensure critical keywords appear naturally throughout multiple sections—this is essential for ATS parsing and keyword matching.
 
-Return only the updated JSON with the optimized profile section. Show no working, no explanations, and no text outside the JSON structure.`;
+Optimize for ATS keyword recognition. Use clear, direct language without special characters, symbols, or formatting that breaks ATS parsing (avoid tables, columns, headers/footers, special bullet symbols, icons, or graphics within text). Include industry-standard terminology and acronyms exactly as they appear in the job description. Prioritize incorporating all hard-requirement keywords and skills that ATS systems scan for. Maximize keyword density and relevance signals across all sections without keyword stuffing.
+
+Apply strong action verbs and impact-driven phrasing in work experience bullet points (e.g., 'spearheaded,' 'architected,' 'optimized,' 'delivered,' 'spearheaded,' 'engineered,' 'streamlined'). Start each bullet with a powerful verb and follow with quantifiable results where my original data supports it.
+
+Humanize the language. Write all sections in natural, conversational English that reads as genuinely written by a person—not as AI-generated text. Vary sentence structure, use active voice appropriately, and avoid robotic phrasing, repetitive patterns, or obvious AI tells. The writing should feel authentic, professional, and confident.
+
+Strategic keyword placement: Ensure the most critical job description keywords appear in:
+
+The summary/profile (primary keywords)
+Skills section (exact-match technical terms)
+Work experience bullet points (contextual usage)
+Strengths section (behavioral competencies)
+Return only the updated JSON with the fully optimized resume. Show no working, no explanations, and no text outside the JSON structure."
+`;
 
 export default function AIInputScreen({
   activeUser,
@@ -41,8 +62,8 @@ export default function AIInputScreen({
   const [prompt, setPrompt] = useState(DEFAULT_PROMPT);
   const [provider, setProvider] = useState<"puter" | "nvidia">("puter");
 
-  // Provider states
-  const [puterModel, setPuterModel] = useState("gpt-4o");
+  // Provider states - Updated default to a new flagship model
+  const [puterModel, setPuterModel] = useState("claude-sonnet-5");
   const [nvidiaModel, setNvidiaModel] = useState(
     "meta/llama-3.1-405b-instruct",
   );
@@ -156,11 +177,35 @@ export default function AIInputScreen({
                 }}
               >
                 <optgroup label="⭐ Flagship Models" className="bg-slate-800">
+                  <option value="claude-fable-5" className="bg-slate-800">
+                    Anthropic - Claude Fable 5
+                  </option>
+                  <option value="claude-sonnet-5" className="bg-slate-800">
+                    Anthropic - Claude Sonnet 5
+                  </option>
+                  <option value="claude-opus-4.8-fast" className="bg-slate-800">
+                    Anthropic - Claude Opus 4.8 Fast
+                  </option>
+                  <option value="z-ai/glm-5.2" className="bg-slate-800">
+                    Z.AI - GLM 5.2
+                  </option>
+                  <option value="z-ai/glm-5.1" className="bg-slate-800">
+                    Z.AI - GLM 5.1
+                  </option>
+                  <option value="kimi-k3" className="bg-slate-800">
+                    Moonshot - Kimi K3
+                  </option>
+                  <option value="qwen-3.8-tmax" className="bg-slate-800">
+                    Qwen 3.8 tMax
+                  </option>
+                  <option value="deepseek-v3.2-exp" className="bg-slate-800">
+                    DeepSeek V3.2 Exp
+                  </option>
+                  <option value="openai/gpt-5.3-codex" className="bg-slate-800">
+                    OpenAI - GPT-5.3 Codex
+                  </option>
                   <option value="gpt-4o" className="bg-slate-800">
                     OpenAI - GPT-4o
-                  </option>
-                  <option value="claude-3-5-sonnet" className="bg-slate-800">
-                    Anthropic - Claude 3.5 Sonnet
                   </option>
                   <option value="gemini-1.5-pro" className="bg-slate-800">
                     Google - Gemini 1.5 Pro
@@ -171,6 +216,12 @@ export default function AIInputScreen({
                 </optgroup>
 
                 <optgroup label="OpenAI" className="bg-slate-800">
+                  <option value="openai/gpt-5.2-codex" className="bg-slate-800">
+                    GPT-5.2 Codex
+                  </option>
+                  <option value="openai/gpt-5.1-codex" className="bg-slate-800">
+                    GPT-5.1 Codex
+                  </option>
                   <option value="gpt-4-turbo" className="bg-slate-800">
                     GPT-4 Turbo
                   </option>
@@ -183,14 +234,92 @@ export default function AIInputScreen({
                 </optgroup>
 
                 <optgroup label="Anthropic (Claude)" className="bg-slate-800">
-                  <option value="claude-3-opus" className="bg-slate-800">
-                    Claude 3 Opus
+                  <option value="claude-opus-4-8" className="bg-slate-800">
+                    Claude Opus 4.8
                   </option>
-                  <option value="claude-3-sonnet" className="bg-slate-800">
-                    Claude 3 Sonnet
+                  <option value="claude-opus-4.7-fast" className="bg-slate-800">
+                    Claude Opus 4.7 Fast
                   </option>
-                  <option value="claude-3-haiku" className="bg-slate-800">
-                    Claude 3 Haiku
+                  <option value="claude-opus-4-7" className="bg-slate-800">
+                    Claude Opus 4.7
+                  </option>
+                  <option value="claude-sonnet-4-6" className="bg-slate-800">
+                    Claude Sonnet 4.6
+                  </option>
+                  <option value="claude-opus-4-6" className="bg-slate-800">
+                    Claude Opus 4.6
+                  </option>
+                  <option value="claude-opus-4-5" className="bg-slate-800">
+                    Claude Opus 4.5
+                  </option>
+                  <option value="claude-haiku-4-5" className="bg-slate-800">
+                    Claude Haiku 4.5
+                  </option>
+                  <option value="claude-sonnet-4-5" className="bg-slate-800">
+                    Claude Sonnet 4.5
+                  </option>
+                  <option value="claude-opus-4-1" className="bg-slate-800">
+                    Claude Opus 4.1
+                  </option>
+                  <option value="claude-opus-4" className="bg-slate-800">
+                    Claude Opus 4
+                  </option>
+                  <option value="claude-sonnet-4" className="bg-slate-800">
+                    Claude Sonnet 4
+                  </option>
+                </optgroup>
+
+                <optgroup label="Z.AI (GLM)" className="bg-slate-800">
+                  <option value="z-ai/glm-5-turbo" className="bg-slate-800">
+                    GLM-5 Turbo
+                  </option>
+                  <option value="z-ai/glm-5" className="bg-slate-800">
+                    GLM-5
+                  </option>
+                  <option value="z-ai/glm-4.7-flashx" className="bg-slate-800">
+                    GLM-4.7 FlashX
+                  </option>
+                  <option value="z-ai/glm-4.7-flash" className="bg-slate-800">
+                    GLM-4.7 Flash
+                  </option>
+                  <option value="z-ai/glm-4.7" className="bg-slate-800">
+                    GLM-4.7
+                  </option>
+                  <option value="z-ai/glm-4.6v-flashx" className="bg-slate-800">
+                    GLM-4.6v FlashX
+                  </option>
+                  <option value="z-ai/glm-4.6v-flash" className="bg-slate-800">
+                    GLM-4.6v Flash
+                  </option>
+                  <option value="z-ai/glm-4.6" className="bg-slate-800">
+                    GLM-4.6
+                  </option>
+                  <option value="z-ai/glm-4.5-x" className="bg-slate-800">
+                    GLM-4.5 X
+                  </option>
+                  <option value="z-ai/glm-4.5-airx" className="bg-slate-800">
+                    GLM-4.5 AirX
+                  </option>
+                  <option value="z-ai/glm-4.5-flash" className="bg-slate-800">
+                    GLM-4.5 Flash
+                  </option>
+                  <option value="z-ai/glm-4.5" className="bg-slate-800">
+                    GLM-4.5
+                  </option>
+                  <option value="z-ai/glm-4.5-air" className="bg-slate-800">
+                    GLM-4.5 Air
+                  </option>
+                  <option
+                    value="z-ai/glm-4-32b-0414-128k"
+                    className="bg-slate-800"
+                  >
+                    GLM-4 32B 0414 128k
+                  </option>
+                  <option
+                    value="z-ai/autoglm-phone-multilingual"
+                    className="bg-slate-800"
+                  >
+                    AutoGLM Phone Multilingual
                   </option>
                 </optgroup>
 
@@ -257,15 +386,6 @@ export default function AIInputScreen({
                     className="bg-slate-800"
                   >
                     Qwen 2.5 Coder 32B
-                  </option>
-                </optgroup>
-
-                <optgroup label="Z.AI (GLM)" className="bg-slate-800">
-                  <option value="glm-4-plus" className="bg-slate-800">
-                    GLM-4-Plus
-                  </option>
-                  <option value="glm-4" className="bg-slate-800">
-                    GLM-4
                   </option>
                 </optgroup>
 
@@ -485,6 +605,27 @@ export default function AIInputScreen({
                     className="bg-slate-800"
                   >
                     Qwen 2 7B
+                  </option>
+                </optgroup>
+
+                <optgroup label="z-ai" className="bg-slate-800">
+                  <option value="z-ai/glm-5.2" className="bg-slate-800">
+                    glm-5.2
+                  </option>
+                  <option value="z-ai/glm-5.1" className="bg-slate-800">
+                    glm-5.1
+                  </option>
+                </optgroup>
+
+                <optgroup label="minimax" className="bg-slate-800">
+                  <option value="minimaxai/minimax-m3" className="bg-slate-800">
+                    minimax-m3
+                  </option>
+                  <option
+                    value="minimaxai/minimax-m2.7"
+                    className="bg-slate-800"
+                  >
+                    minimax-m2.7
                   </option>
                 </optgroup>
               </select>

@@ -139,38 +139,31 @@ export default function Dashboard() {
   };
 
   const handleSubmit = async () => {
-    if (!activeUser) {
-      alert("No active user data to save.");
-      return;
-    }
+    if (!activeUser) return;
 
-    setIsSaving(true);
-
-    // Determine if we are updating an existing entry or appending a new one
+    // Map through users. If the original ID matches, replace it with the new activeUser data.
+    // If it doesn't match any original ID, it's a new user, so add it to the end.
+    let updatedDbUsers;
     const exists = dbUsers.some((u) => u.id === originalId);
-    const updatedDbUsers = exists
-      ? dbUsers.map((u) => (u.id === originalId ? activeUser : u))
-      : [...dbUsers, activeUser];
 
-    try {
-      const res = await fetch("/api/db", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ resumeusers: updatedDbUsers }),
-      });
-
-      if (!res.ok) throw new Error("Failed to save to DB");
-
-      // Only update local UI state after a successful network call
-      setDbUsers(updatedDbUsers);
-      setOriginalId(activeUser.id);
-      setViewMode("preview");
-    } catch (error) {
-      console.error("Save error:", error);
-      alert("Failed to save changes.");
-    } finally {
-      setIsSaving(false);
+    if (exists) {
+      updatedDbUsers = dbUsers.map((u) =>
+        u.id === originalId ? activeUser : u,
+      );
+    } else {
+      updatedDbUsers = [...dbUsers, activeUser];
     }
+
+    setDbUsers(updatedDbUsers);
+    setOriginalId(activeUser.id); // Update originalId to the new ID
+    setIsSaving(true);
+    await fetch("/api/db", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ resumeusers: updatedDbUsers }),
+    });
+    setIsSaving(false);
+    setViewMode("preview");
   };
 
   const handleAIGenerate = (

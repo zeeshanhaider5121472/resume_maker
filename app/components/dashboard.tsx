@@ -151,19 +151,57 @@ export default function Dashboard() {
         u.id === originalId ? activeUser : u,
       );
     } else {
-      updatedDbUsers = [...dbUsers, activeUser];
+      // FALLBACK: If originalId wasn't found, check if the activeUser's ID is already in the DB.
+      // This prevents duplicate insertion errors if originalId was out of sync.
+      const alreadyExists = dbUsers.some((u) => u.id === activeUser.id);
+
+      if (alreadyExists) {
+        updatedDbUsers = dbUsers.map((u) =>
+          u.id === activeUser.id ? activeUser : u,
+        );
+      } else {
+        updatedDbUsers = [...dbUsers, activeUser];
+      }
     }
 
-    setDbUsers(updatedDbUsers);
-    setOriginalId(activeUser.id); // Update originalId to the new ID
     setIsSaving(true);
-    await fetch("/api/db", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ resumeusers: updatedDbUsers }),
-    });
-    setIsSaving(false);
-    setViewMode("preview");
+
+    // Optional: Log the payload to verify exactly what is being sent
+    console.log(
+      "Sending to API:",
+      JSON.stringify({ resumeusers: updatedDbUsers }),
+    );
+
+    try {
+      const response = await fetch("/api/db", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ resumeusers: updatedDbUsers }),
+      });
+
+      if (!response.ok) {
+        // If the API returns an error (like a 400 or 500), catch it here
+        const errorText = await response.text();
+        console.error("API Error:", errorText);
+        alert("Failed to save to the database.");
+        return; // Stop execution so we don't update the UI state
+      }
+
+      // 1. ONLY update React state if the database write was successful
+      setDbUsers(updatedDbUsers);
+
+      // 2. Update originalId to the new ID
+      setOriginalId(activeUser.id);
+
+      // 3. Change view mode
+      setViewMode("preview");
+    } catch (error) {
+      console.error("Network/Fetch Error:", error);
+      alert("A network error occurred while saving.");
+    } finally {
+      // 4. Always turn off the saving spinner, whether it succeeded or failed
+      setIsSaving(false);
+    }
   };
 
   const handleAIGenerate = (

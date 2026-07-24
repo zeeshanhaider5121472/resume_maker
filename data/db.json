@@ -27,7 +27,7 @@
         },
         {
           "company": "Chicken Palace",
-          "role": "Cash Operator/ Till Operator",
+          "role": "POS",
           "duration": "Apr 2023 - Aug 2023",
           "location": "Peterborough UK",
           "responsibilities": [
@@ -145,59 +145,64 @@
           "duration": "01/10/2024 - Current",
           "location": "Sargodha, Pakistan",
           "responsibilities": [
-            "Developed responsive web applications using React.js and Next.js, improving performance and user experience.",
-            "Designed and implemented modern UI components aligned with UX best practices.",
-            "Collaborated with marketing teams to create UX-driven campaigns that increased engagement.",
-            "Debugged and optimized frontend code to improve application stability and load times."
+            "Participated in the full software development lifecycle from requirements gathering through design, development, testing, deployment, and maintenance of responsive web applications built with React.js and Next.js.",
+            "Wrote clean, efficient, and well-documented code while contributing to internal processes and tools that improved team productivity.",
+            "Collaborated closely with cross-functional teams including marketing to deliver projects within defined timelines, supporting UX-driven campaigns that increased engagement.",
+            "Assisted in troubleshooting, debugging, and resolving software defects to improve application stability and load times, ensuring code quality through peer reviews and adherence to best practices.",
+            "Continuously explored emerging technologies and industry trends to deliver innovative solutions and improve overall product performance."
           ]
         },
         {
           "company": "DrBeen Corp",
-          "role": "UI/UX Designer (Remote Job) ",
-          "duration": "19/02/2024 - 30/09/2024 ",
+          "role": "UI/UX Designer (Remote Job)",
+          "duration": "19/02/2024 - 30/09/2024",
           "location": "California, United States",
           "responsibilities": [
-            "Designed UI/UX solutions for web and mobile platforms , improving usability and user satisfaction.",
-            "Conducted usability testing and implemented feedback-driven design improvements.",
-            "Collaborated with stakeholders and clients to align design goals with business objectives."
+            "Designed and developed UI/UX solutions for web and mobile platforms, contributing across the full SDLC from requirements gathering to deployment and maintenance.",
+            "Conducted usability testing and implemented feedback-driven design improvements, applying software testing and debugging practices to validate functionality.",
+            "Collaborated with stakeholders and clients across cross-functional teams to align design goals with business objectives and ensure successful project delivery.",
+            "Reviewed and optimized existing application interfaces to ensure reliability, performance, and adherence to best practices."
           ]
         },
         {
           "company": "CHI Technologies, NUST University, NSTP",
-          "role": "Full Stack Developer (intern)",
-          "duration": " 12/11/2023 - 30/06/2024",
+          "role": "Full Stack Developer (Intern)",
+          "duration": "12/11/2023 - 30/06/2024",
           "location": "Islamabad, Pakistan",
           "responsibilities": [
-            "Built and maintained web applications using NestJS, Flutter, JavaScript, and Angular.",
-            "Designed intuitive UI interfaces and improved overall product usability.",
-            "Assisted in usability testing strategies to enhance workflow efficiency."
+            "Built and maintained web applications using NestJS, Flutter, JavaScript, and Angular, participating in the full software development lifecycle from design through deployment.",
+            "Wrote clean, efficient, and well-documented code following version control best practices with Git to manage collaborative development workflows.",
+            "Designed intuitive UI interfaces and improved overall product usability through structured usability testing strategies.",
+            "Assisted in troubleshooting and debugging application issues, contributing to code reviews and quality assurance processes within an Agile team environment."
           ]
         },
         {
           "company": "Maybank",
-          "role": "UI/UX Designer (intern)",
+          "role": "UI/UX Designer (Intern)",
           "duration": "30/01/2023 - 31/05/2023",
           "location": "Kuala Lumpur, Malaysia",
           "responsibilities": [
-            "Contributed to UI/UX improvements for banking web and mobile products.",
-            "Worked on Design Language Systems (DLS), wireframes, user flows, and prototypes.",
-            "Conducted interviews and usability analysis to improve user experience."
+            "Contributed to UI/UX improvements for banking web and mobile products, gathering requirements and supporting the development of new and existing software applications.",
+            "Worked on Design Language Systems (DLS), wireframes, user flows, and prototypes, applying attention to detail and structured design processes.",
+            "Conducted user interviews and usability analysis to gather feedback, translating insights into actionable design improvements that enhanced user experience.",
+            "Collaborated with cross-functional development teams to ensure design alignment with technical implementation and project timelines."
           ]
         },
         {
           "company": "Datum ClearMind Sdn Bhd",
-          "role": "Web Developer and Social Media Manager (intern)",
+          "role": "Web Developer and Social Media Manager (Intern)",
           "duration": "01/09/2020 - 30/11/2020",
           "location": "Kuala Lumpur, Malaysia",
           "responsibilities": [
-            "Designed marketing visuals and UI assets for web and social media platforms.",
-            "Developed and optimized WordPress websites for SEO and performance.",
-            "Created promotional videos and digital media content."
+            "Designed marketing visuals and UI assets for web and social media platforms, supporting the development of digital products and internal tools.",
+            "Developed and optimized WordPress websites focusing on performance, SEO, and clean code practices.",
+            "Created promotional videos and digital media content while contributing to team productivity through efficient workflow improvements.",
+            "Stayed updated with emerging web technologies and industry trends to continuously improve skills and deliver innovative solutions."
           ]
         }
       ],
       "aboutmyself": {
-        "summary": "UI/UX Designer and Frontend Developer with almost 4 years of experience in designing and developing user-centered web and mobile applications. Strong background in React.js, Next.js, Flutter, UI/UX research, usability testing, and design systems. Proven ability to collaborate with cross-functional teams and deliver high-quality, scalable digital products. Seeking opportunities to contribute to innovative and user-focused organizations."
+        "summary": "Software Developer and UI/UX Designer with almost 4 years of experience participating in the full software development lifecycle, from requirements gathering and design through development, testing, deployment, and maintenance. Proficient in JavaScript, Python, Java, C#, React.js, Next.js, Flutter, and Angular with hands-on experience using Git for version control. Skilled at writing clean, efficient, and well-documented code, troubleshooting and debugging software defects, and ensuring code quality through reviews and best practices. Strong background in usability testing, design systems, and cross-functional team collaboration with a willingness to learn emerging technologies including AI-assisted development and prompt-driven workflows. Seeking to contribute to innovative software teams delivering reliable, high-quality digital products."
       },
       "educationhistory": [
         {
@@ -225,22 +230,58 @@
       ],
       "skillCategories": [
         {
-          "category": "Frontend & Programming Languages",
+          "category": "Programming Languages",
           "skills": [
-            "NextJS",
-            "Flutter",
-            "ReactJS",
-            "Javascript",
-            "HTML5",
-            "CSS3",
-            "Typescript",
-            "Angular",
-            "C#",
-            "Java",
-            "C++",
+            "JavaScript",
+            "TypeScript",
             "Python",
-            "Wordpress",
-            "Linux"
+            "Java",
+            "C#",
+            "C++",
+            "HTML5",
+            "CSS3"
+          ]
+        },
+        {
+          "category": "Frontend & Frameworks",
+          "skills": [
+            "ReactJS",
+            "NextJS",
+            "Angular",
+            "Flutter",
+            "WordPress"
+          ]
+        },
+        {
+          "category": "Backend, Databases & APIs",
+          "skills": [
+            "NestJS",
+            "NodeJS",
+            "PHP Laravel",
+            "MongoDB",
+            "SQL",
+            "Prisma",
+            "Firebase",
+            "REST APIs"
+          ]
+        },
+        {
+          "category": "Tools, Version Control & Platforms",
+          "skills": [
+            "Git",
+            "Docker",
+            "Linux",
+            "Microsoft Office"
+          ]
+        },
+        {
+          "category": "AI-Assisted Development",
+          "skills": [
+            "AI Code Generation",
+            "Prompt-Driven Development",
+            "AI Code Review and Optimization",
+            "Prompt Engineering",
+            "AI-Assisted Software Development Workflows"
           ]
         },
         {
@@ -257,20 +298,6 @@
           ]
         },
         {
-          "category": "Backend & Tools",
-          "skills": [
-            "NestJS",
-            "PHP Laravel",
-            "MongoDB",
-            "SQL",
-            "Prisma",
-            "NodeJS",
-            "Git",
-            "Docker",
-            "Firebase"
-          ]
-        },
-        {
           "category": "Creative Tools",
           "skills": [
             "Adobe Photoshop",
@@ -278,8 +305,7 @@
             "Canvas",
             "Adobe Illustrator",
             "Adobe Premiere Pro",
-            "DaVinci",
-            "Microsoft Office"
+            "DaVinci"
           ]
         }
       ],
@@ -288,13 +314,15 @@
           "category": "Interpersonal Skills",
           "skills": [
             "Problem Solving",
-            "Leadership",
             "Critical Thinking",
-            "Team Management",
             "Teamwork",
+            "Cross-Functional Collaboration",
             "Communication",
             "Adaptability",
-            "Time Management"
+            "Willingness to Learn",
+            "Attention to Detail",
+            "Time Management",
+            "Leadership"
           ]
         }
       ],

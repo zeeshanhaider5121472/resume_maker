@@ -10,7 +10,7 @@ export default function LanguagesTemp1({ languages }: Language) {
   return (
     <div className="flex flex-col">
       <Dividergrey />
-      <div className="py-4 border-t text-[14px] border-gray-500 flex flex-col md:flex-row w-full min-h">
+      <div className="py-4 border-t text-[16px] border-gray-400 flex flex-col md:flex-row w-full min-h">
         <p className="md:w-1/4 px-6 flex uppercase font-bold">Languages</p>
         <span className="md:w-2/3 flex flex-col space-y-4">
           {languages.map((langage, index) => (

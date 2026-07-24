@@ -11,11 +11,11 @@ export default function HeaderTemp1({ personalinformation }: HeaderTemp1Props) {
     <div className="flex flex-col">
       <header className="flex flex-col md:flex-row w-full min-h-20 pt-6">
         <span className="md:w-1/4"></span>
-        <span className="md:w-2/3 flex flex-col">
+        <span className="md:w-2/3 flex flex-col gap-1">
           <p className="text-3xl uppercase tracking-[3px]">
             {personalinformation.name}
           </p>
-          <span className="flex flex-row text-[12px]">
+          <span className="flex flex-row text-[16px]">
             <p>{personalinformation.contact}</p>
             <p className="mx-3">|</p>
             <p>{personalinformation.email}</p>

@@ -11,9 +11,13 @@ export default function SummaryTemp1({ aboutmyself }: SummaryTemp1Props) {
   return (
     <div className="flex flex-col">
       <Dividergrey />
-      <div className="py-4 border-t  text-[14px] border-gray-500 flex flex-col md:flex-row w-full min-h-36">
-        <p className="md:w-1/4 px-6 flex uppercase font-bold">About Myself</p>
-        <p className="md:w-2/3 flex">{aboutmyself.summary}</p>
+      <div className="py-4 border-t border-gray-400 flex flex-col md:flex-row w-full min-h-36">
+        <p className="md:w-1/4 px-6 flex uppercase text-[16px] font-bold">
+          About Myself
+        </p>
+        <p className="md:w-2/3 flex text-[16px] font-light">
+          {aboutmyself.summary}
+        </p>
       </div>
     </div>
   );

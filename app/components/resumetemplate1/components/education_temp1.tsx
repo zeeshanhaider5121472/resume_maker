@@ -11,7 +11,7 @@ export default function EducationTemp1({
   return (
     <div className="flex flex-col">
       <Dividergrey />
-      <div className="py-4 border-t text-[14px] border-gray-500 flex flex-col md:flex-row w-full min-h-36">
+      <div className="py-4 border-t text-[16px] border-gray-400 flex flex-col md:flex-row w-full min-h-36">
         <p className="md:w-1/4 px-6 flex uppercase font-bold">
           Education History
         </p>
@@ -37,7 +37,7 @@ function EducationCard({
         <p className="font-light font-sans">{education.location}</p>
       </span>
       <span className="flex flex-row">
-        <p className="font-bold pr-2">{education.degree}</p>
+        <p className="font pr-2">{education.degree}</p>
         <p className="font-light font-sans">{education.cgpa}</p>
       </span>
     </div>

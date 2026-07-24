@@ -8,7 +8,7 @@ interface StrengthTemp1Props {
 export default function StrengthsTemp1({
   strengthCategories,
 }: StrengthTemp1Props) {
-  if (!strengthCategories) return null;
+  if (strengthCategories[0].skills.length === 0) return null;
   return (
     <div className="flex flex-col">
       <Dividergrey />

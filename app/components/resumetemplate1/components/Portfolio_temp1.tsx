@@ -11,7 +11,7 @@ export default function PortfolioTemp1({ portfoliolink }: PortfolioTemp1Props) {
   return (
     <div className="flex flex-col">
       <Dividergrey />
-      <div className="py-4 border-t text-[14px] border-gray-500  flex flex-col md:flex-row w-full min-h-18">
+      <div className="py-4 border-t text-[16px] border-gray-400  flex flex-col md:flex-row w-full min-h-18">
         <p className="md:w-1/4 px-6 flex uppercase font-bold ">Portfolio</p>
         <span className="md:w-2/3 flex flex-row w-full justify-between items-start ">
           <a
